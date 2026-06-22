@@ -41,9 +41,7 @@ export default async function HomePage() {
             <span className="italic">grown with</span> patience.
           </h1>
           <p className="mt-7 max-w-md text-base leading-relaxed text-moss dark:text-cream/60">
-            คอลเลกชัน Alocasia ด่างหายาก คัดเฉพาะต้นฟอร์มสวย
-            เพาะเลี้ยงเนื้อเยื่อและปลูกในระบบเซมิไฮโดร
-            แต่ละต้นเป็นชิ้นพิเศษสำหรับนักสะสม
+            Exceptionally rare. Individually selected. Grown for collectors.
           </p>
           <div className="mt-9 flex items-center gap-7">
             <Link
