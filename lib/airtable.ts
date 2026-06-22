@@ -10,7 +10,7 @@ import type { Plant, PlantImage } from "./types";
  * values are the exact field names in your Airtable "Plants" table.
  */
 export const FIELDS = {
-  name: "Species Name",
+  name: "Plant CODE",
   variety: "Plant Category",
   price: "Pot plant price (SPECIES CODE) (from Pot plant price (from SPECIES CODE))",
   resellerPrice: "PRICE (from Species Name)",
@@ -151,8 +151,7 @@ export async function getPlants(): Promise<Plant[]> {
   const records = await b(TABLE_NAME)
     .select(VIEW ? { pageSize: 100, view: VIEW } : { pageSize: 100 })
     .all();
-
-  return mapRecords(records);
+  return mapRecords(records).filter((p) => p.available);
 }
 
 /** Fetch a single plant by Airtable record id. */
