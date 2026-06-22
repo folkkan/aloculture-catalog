@@ -14,7 +14,7 @@ export default async function HomePage() {
     getFeaturedPlants(),
   ]);
 
-  const hero = featured[0] ?? plants[0];
+  const hero = plants[Math.floor(Math.random() * Math.min(plants.length, 10))];
 
   return (
     <>
