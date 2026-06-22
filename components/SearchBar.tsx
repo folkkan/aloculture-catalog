@@ -105,7 +105,7 @@ export function SearchBar({ plants, onAdminMode }: Props) {
             onChange={(e) => handleChange(e.target.value)}
             onFocus={() => query && setOpen(true)}
             onKeyDown={handleKey}
-            placeholder={isAdmin ? "🔐 Admin mode active — ค้นหาต้นที่ต้องการลบ" : "ค้นหาต้นไม้... เช่น Amazonica, pink, AMAP"}
+            placeholder={isAdmin ? "🔐 Admin mode active — ค้นหาต้นที่ต้องการลบ" : "Search, AMAP"}
             className={`w-full rounded-full border py-3 pl-11 pr-5 text-sm outline-none transition-all ${
               isAdmin
                 ? "border-red-500/40 bg-red-500/5 text-ink dark:text-ink-dark focus:border-red-500/60 focus:ring-2 focus:ring-red-500/10"
