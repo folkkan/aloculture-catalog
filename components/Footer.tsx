@@ -18,9 +18,7 @@ export function Footer() {
             {SITE_NAME}
           </p>
           <p className="mt-4 text-sm leading-relaxed text-moss dark:text-cream/60">
-            Variegated Alocasia ที่คัดมาเพื่อนักสะสมโดยเฉพาะ —
-            เพาะเลี้ยงเนื้อเยื่อและปลูกในระบบเซมิไฮโดรของเราเองที่ประเทศไทย
-            ส่งทั่วโลก
+            Rare variegated Alocasia, grown in Thailand.
           </p>
         </div>
 
