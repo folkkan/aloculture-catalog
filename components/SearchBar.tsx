@@ -90,7 +90,7 @@ export function SearchBar({ plants, onAdminMode }: Props) {
     <div className="space-y-2">
       {isAdmin && (
         <div className="flex items-center gap-2 rounded-full bg-red-500/10 border border-red-500/30 px-4 py-2">
-          <span className="text-xs font-medium text-red-400">🔐 Admin Mode — พิมพ์ "exit" เพื่อออก</span>
+          <span className="text-xs font-medium text-red-400">🔐 Admin Mode — type "exit" to quit</span>
         </div>
       )}
       <div ref={containerRef} className="relative w-full max-w-xl mx-auto">
@@ -105,7 +105,7 @@ export function SearchBar({ plants, onAdminMode }: Props) {
             onChange={(e) => handleChange(e.target.value)}
             onFocus={() => query && setOpen(true)}
             onKeyDown={handleKey}
-            placeholder={isAdmin ? "🔐 Admin mode active — ค้นหาต้นที่ต้องการลบ" : "Search, AMAP"}
+            placeholder={isAdmin ? "🔐 Admin mode — search plant to delete" : "Search, AMAP"}
             className={`w-full rounded-full border py-3 pl-11 pr-5 text-sm outline-none transition-all ${
               isAdmin
                 ? "border-red-500/40 bg-red-500/5 text-ink dark:text-ink-dark focus:border-red-500/60 focus:ring-2 focus:ring-red-500/10"
@@ -143,7 +143,7 @@ export function SearchBar({ plants, onAdminMode }: Props) {
 
         {open && query.trim().length > 0 && results.length === 0 && !isAdmin && (
           <div className="absolute z-50 mt-2 w-full rounded-2xl border border-ink/10 bg-canvas px-4 py-5 text-center text-sm text-moss shadow-xl dark:border-cream/10 dark:bg-surface-dark dark:text-cream/50">
-            ไม่พบ "{query}" — ลองค้นหาชื่ออื่นครับ
+            No results for "{query}" — ลองค้นหาชื่ออื่นครับ
           </div>
         )}
       </div>

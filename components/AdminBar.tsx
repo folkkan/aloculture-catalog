@@ -27,10 +27,10 @@ export function AdminDeleteButton({ plantId, plantName, onDeleted }: Props) {
         onDeleted();
       } else {
         const d = await res.json().catch(() => ({}));
-        alert("ลบไม่ได้: " + (d.error ?? res.status));
+        alert("Error: " + (d.error ?? res.status));
       }
     } catch {
-      alert("เกิดข้อผิดพลาด กรุณาลองใหม่");
+      alert("Something went wrong กรุณาลองใหม่");
     }
     setLoading(false);
     setConfirm(false);
@@ -39,17 +39,17 @@ export function AdminDeleteButton({ plantId, plantName, onDeleted }: Props) {
   if (confirm) {
     return (
       <div className="flex flex-col gap-1.5 rounded-xl bg-black/70 p-2 backdrop-blur-sm">
-        <span className="text-[10px] text-red-300 font-medium">ลบ "{plantName.slice(0,20)}" ?</span>
+        <span className="text-[10px] text-red-300 font-medium">Delete "{plantName.slice(0,20)}" ?</span>
         <div className="flex gap-1.5">
           <button onClick={handleDelete} disabled={loading}
             className="rounded-full bg-red-500 px-3 py-1 text-[10px] font-medium text-white hover:bg-red-600 disabled:opacity-50"
           >
-            {loading ? "ลบ..." : "ยืนยัน"}
+            {loading ? "Deleting..." : "Confirm"}
           </button>
           <button onClick={() => setConfirm(false)}
             className="rounded-full border border-white/30 px-3 py-1 text-[10px] text-white/70 hover:text-white"
           >
-            ยกเลิก
+            Cancel
           </button>
         </div>
       </div>
@@ -66,7 +66,7 @@ export function AdminDeleteButton({ plantId, plantName, onDeleted }: Props) {
         <path d="M10 11v6M14 11v6"/>
         <path d="M9 6V4h6v2"/>
       </svg>
-      ลบต้นนี้
+      Delete
     </button>
   );
 }

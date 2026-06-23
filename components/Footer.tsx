@@ -27,7 +27,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2">
             {channels.length === 0 && (
               <li className="text-sm text-moss dark:text-cream/50">
-                ตั้งค่าช่องทางติดต่อใน .env
+                Set contact channels in .env
               </li>
             )}
             {channels.map((c) => (
