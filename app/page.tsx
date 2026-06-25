@@ -5,7 +5,7 @@ import { ProductGrid } from "@/components/ProductGrid";
 import { PlantImage } from "@/components/PlantImage";
 import { CollectionSection } from "@/components/CollectionSection";
 
-export const revalidate = 3600;
+export const revalidate = 30;
 
 export default async function HomePage() {
   const [plants, groups, featured] = await Promise.all([
