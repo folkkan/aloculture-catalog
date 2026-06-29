@@ -151,7 +151,7 @@ export async function getPlants(): Promise<Plant[]> {
   if (!b) return SAMPLE_PLANTS;
 
   const records = await b(TABLE_NAME)
-    .select(VIEW ? { pageSize: 100, view: VIEW } : { pageSize: 100 })
+    .select({ pageSize: 100 })
     .all();
 
   return mapRecords(records);
