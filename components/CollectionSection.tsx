@@ -16,18 +16,16 @@ export function CollectionSection({
 
   return (
     <>
-      {/* Search */}
-      <div className="shell py-10">
-        <SearchBar plants={plants} onAdminMode={setAdminMode} />
-      </div>
-
-      <div className="shell">
-        <div className="hairline" />
+      {/* Search — ลอยติดใต้ header (h-16 = top-16) */}
+      <div className="sticky top-16 z-40 border-b border-ink/5 bg-canvas/85 backdrop-blur-xl backdrop-saturate-150 dark:border-cream/5 dark:bg-canvas-dark/85">
+        <div className="shell py-3">
+          <SearchBar plants={plants} onAdminMode={setAdminMode} />
+        </div>
       </div>
 
       {/* Collection */}
-      <section id="collection" className="shell scroll-mt-24 py-20">
-        <div className="mb-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+      <section id="collection" className="shell scroll-mt-32 py-14 sm:py-20">
+        <div className="mb-10 flex flex-col justify-between gap-6 sm:mb-12 sm:flex-row sm:items-end">
           <div>
             <p className="eyebrow">The Collection</p>
             <h2 className="mt-4 font-display text-4xl font-light text-ink sm:text-5xl dark:text-ink-dark">
