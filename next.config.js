@@ -3,11 +3,9 @@ const nextConfig = {
   images: {
     localPatterns: [
       { pathname: '/api/image', search: '' },
+      { pathname: '/logo.png' },
+      { pathname: '/**' },
     ],
-    // Airtable serves attachment images from these hosts.
-    // NOTE: Airtable attachment URLs are temporary (expire after a few hours).
-    // For production, re-host images on a CDN (see README) — but with ISR
-    // revalidation below the URLs refresh well within their validity window.
     remotePatterns: [
       { protocol: "https", hostname: "v5.airtableusercontent.com" },
       { protocol: "https", hostname: "dl.airtable.com" },
