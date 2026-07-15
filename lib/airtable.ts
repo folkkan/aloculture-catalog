@@ -10,7 +10,7 @@ import type { Plant, PlantImage } from "./types";
  * values are the exact field names in your Airtable "Plants" table.
  */
 export const FIELDS = {
-  name: "Species Name",
+  name: "Plant CODE",
   variety: "Plant Category",
   price: "Pot plant price (SPECIES CODE) (from Pot plant price (from SPECIES CODE))",
   resellerPrice: "PRICE (from Species Name)",
