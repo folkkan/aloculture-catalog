@@ -17,27 +17,18 @@ export function ProductCard({
 }) {
   const [imgIndex, setImgIndex] = useState(0);
   const hasMultiple = plant.images.length > 1;
-
-  function next() {
-    if (hasMultiple) setImgIndex((i) => (i + 1) % plant.images.length);
-  }
-  function reset() {
-    setImgIndex(0);
-  }
-
   const current = plant.images[imgIndex];
 
   return (
     <Link
       href={`/plants/${plant.id}`}
-      className="group block"
+      className="group block rounded-[6px] transition-colors duration-300 active:bg-ink/5 dark:active:bg-cream/5 sm:active:bg-transparent"
       aria-label={plant.name}
     >
       <figure
         className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-cream/30 dark:bg-surface-dark"
-        onMouseEnter={next}
-        onMouseLeave={reset}
-        onTouchStart={next}
+        onMouseEnter={() => hasMultiple && setImgIndex((i) => (i + 1) % plant.images.length)}
+        onMouseLeave={() => setImgIndex(0)}
       >
         {current ? (
           <Image
@@ -61,14 +52,34 @@ export function ProductCard({
           {String(index + 1).padStart(3, "0")}
         </span>
 
-        {/* dot indicators เมื่อมีหลายรูป */}
+        {/* ปุ่มเลื่อนรูปบนมือถือ — แยกจากการกดเข้าดูต้น */}
         {hasMultiple && (
-          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <button
+            type="button"
+            aria-label="ดูรูปถัดไป"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setImgIndex((i) => (i + 1) % plant.images.length);
+            }}
+            className="absolute bottom-0 right-0 flex h-14 w-14 items-center justify-center text-white/80 sm:hidden"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/40 backdrop-blur-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </span>
+          </button>
+        )}
+
+        {/* dot indicators — มือถือเห็นตลอด เดสก์ท็อปโชว์ตอน hover */}
+        {hasMultiple && (
+          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1 opacity-100 transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100">
             {plant.images.map((_, i) => (
               <span
                 key={i}
-                className={`block h-1 w-1 rounded-full transition-all duration-300 ${
-                  i === imgIndex ? "w-3 bg-white" : "bg-white/50"
+                className={`block h-1 rounded-full transition-all duration-300 ${
+                  i === imgIndex ? "w-3 bg-white" : "w-1 bg-white/50"
                 }`}
               />
             ))}
@@ -76,20 +87,22 @@ export function ProductCard({
         )}
       </figure>
 
-      <div className="mt-4 flex items-start justify-between gap-4">
-        <div className="min-w-0">
-          <h3 className="font-display text-lg leading-tight text-ink dark:text-ink-dark">
-            {plant.name}
-          </h3>
-          {plant.variety && (
-            <p className="mt-0.5 truncate text-xs italic text-moss dark:text-cream/50">
-              {plant.variety}
-            </p>
-          )}
-        </div>
-        <p className="shrink-0 font-sans text-sm tabular-nums text-ink/80 dark:text-cream/80">
+      {/* ชื่อ → ราคาใต้ชื่อ → พันธุ์ */}
+      <div className="px-1 pb-2 pt-4 sm:px-0 sm:pb-0">
+        <h3 className="font-display text-xl leading-snug text-ink sm:text-lg dark:text-ink-dark">
+          {plant.name}
+        </h3>
+        <p className="mt-1.5 font-sans text-base font-medium tabular-nums text-forest sm:text-sm sm:text-ink/80 dark:text-cream dark:sm:text-cream/80">
           {formatPrice(plant.price, plant.currency)}
         </p>
+        {plant.variety && (
+          <p className="mt-1 truncate text-sm italic text-moss sm:text-xs dark:text-cream/50">
+            {plant.variety}
+          </p>
+        )}
+        <span className="mt-3 flex h-11 items-center justify-center rounded-full border border-ink/10 text-sm text-ink/70 sm:hidden dark:border-cream/10 dark:text-cream/70">
+          ดูรายละเอียด →
+        </span>
       </div>
     </Link>
   );
