@@ -16,9 +16,11 @@ export function CollectionSection({
 
   return (
     <>
-      {/* Search */}
-      <div className="shell py-10">
-        <SearchBar plants={plants} onAdminMode={setAdminMode} />
+      {/* Search — sticky ใต้ header (header สูง h-16) */}
+      <div className="sticky top-16 z-40 bg-canvas/85 py-4 backdrop-blur-xl backdrop-saturate-150 dark:bg-canvas-dark/85">
+        <div className="shell">
+          <SearchBar plants={plants} onAdminMode={setAdminMode} />
+        </div>
       </div>
 
       <div className="shell">
