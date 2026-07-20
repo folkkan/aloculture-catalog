@@ -52,11 +52,11 @@ export function ProductCard({
           {String(index + 1).padStart(3, "0")}
         </span>
 
-        {/* ปุ่มเลื่อนรูปบนมือถือ — แยกจากการกดเข้าดูต้น */}
+        {/* mobile-only photo cycle button, separated from card tap */}
         {hasMultiple && (
           <button
             type="button"
-            aria-label="ดูรูปถัดไป"
+            aria-label="Next photo"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -72,7 +72,7 @@ export function ProductCard({
           </button>
         )}
 
-        {/* dot indicators — มือถือเห็นตลอด เดสก์ท็อปโชว์ตอน hover */}
+        {/* dot indicators — always visible on mobile, hover on desktop */}
         {hasMultiple && (
           <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1 opacity-100 transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100">
             {plant.images.map((_, i) => (
@@ -87,7 +87,7 @@ export function ProductCard({
         )}
       </figure>
 
-      {/* ชื่อ → ราคาใต้ชื่อ → พันธุ์ */}
+      {/* name → price under name → variety */}
       <div className="px-1 pb-2 pt-4 sm:px-0 sm:pb-0">
         <h3 className="font-display text-xl leading-snug text-ink sm:text-lg dark:text-ink-dark">
           {plant.name}
@@ -101,7 +101,7 @@ export function ProductCard({
           </p>
         )}
         <span className="mt-3 flex h-11 items-center justify-center rounded-full border border-ink/10 text-sm text-ink/70 sm:hidden dark:border-cream/10 dark:text-cream/70">
-          ดูรายละเอียด →
+          View details →
         </span>
       </div>
     </Link>
