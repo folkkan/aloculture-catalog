@@ -3,8 +3,18 @@ import { useState } from "react";
 import Image from "next/image";
 import type { PlantImage } from "@/lib/types";
 import { MessengerButton } from "./MessengerButton";
-interface Props { images: PlantImage[]; plantId: string; plantName: string; plantUrl: string; messengerOnly?: boolean; }
-export function PlantGallery({ images, plantId, plantName, plantUrl, messengerOnly }: Props) {
+interface Props {
+  images: PlantImage[];
+  plantId: string;
+  plantName: string;
+  plantUrl: string;
+  plantSku?: string;
+  plantVariety?: string;
+  price?: number;
+  currency?: string;
+  messengerOnly?: boolean;
+}
+export function PlantGallery({ images, plantId, plantName, plantUrl, plantSku, plantVariety, price, currency, messengerOnly }: Props) {
   const [selected, setSelected] = useState(0);
   const [saving, setSaving] = useState(false);
   const [savedAll, setSavedAll] = useState(false);
@@ -22,7 +32,14 @@ export function PlantGallery({ images, plantId, plantName, plantUrl, messengerOn
     }
     setSaving(false); setSavedAll(true); setTimeout(() => setSavedAll(false), 3000);
   }
-  if (messengerOnly) return <MessengerButton plantId={plantId} plantName={plantName} plantUrl={plantUrl} selectedImageUrl={current?.url}/>;
+  const enquireProps = {
+    plantId, plantName, plantUrl,
+    plantSku, plantVariety, price, currency,
+    selectedImageUrl: current?.url,
+    unitIndex: selected + 1,
+    unitTotal: images.length,
+  };
+  if (messengerOnly) return <MessengerButton {...enquireProps} />;
   if (images.length === 0) return <div className="flex aspect-[4/5] items-center justify-center rounded-[4px] bg-cream/30 dark:bg-surface-dark"><p className="font-display italic text-moss">No photos</p></div>;
   const isIOS = typeof navigator !== "undefined" && /iphone|ipad|ipod/i.test(navigator.userAgent);
   return (
@@ -48,6 +65,11 @@ export function PlantGallery({ images, plantId, plantName, plantUrl, messengerOn
           ))}
         </div>
       )}
+      {images.length > 1 && (
+        <p className="text-center text-xs text-moss dark:text-cream/50">
+          {images.length} photos = {images.length} plants in stock · tap a photo to pick yours
+        </p>
+      )}
       {images.length > 1 && !isIOS && (
         <button type="button" onClick={saveAllImages} disabled={saving} className="flex w-full items-center justify-center gap-2 rounded-full border border-ink/15 py-3 text-sm text-ink/65 transition-all hover:border-forest/40 hover:text-forest disabled:opacity-50 dark:border-cream/15 dark:text-cream/55">
           {saving ? "Saving..." : savedAll ? "All saved ✓" : "Save all photos (" + images.length + " photos)"}
@@ -58,7 +80,7 @@ export function PlantGallery({ images, plantId, plantName, plantUrl, messengerOn
           📱 iPhone: Hold on photo → Add to Photos
         </div>
       )}
-      <div className="pt-1"><MessengerButton plantId={plantId} plantName={plantName} plantUrl={plantUrl} selectedImageUrl={current?.url}/></div>
+      <div className="pt-1"><MessengerButton {...enquireProps} /></div>
     </div>
   );
 }

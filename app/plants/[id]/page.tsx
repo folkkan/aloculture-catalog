@@ -92,15 +92,17 @@ export default async function PlantPage({
 
       <div className="mt-8 grid gap-10 md:grid-cols-2 md:gap-14">
 
-        {/* LEFT — Gallery: selected image state lives here (client) */}
         <PlantGallery
           images={plant.images}
           plantId={plant.id}
           plantName={plant.name}
           plantUrl={plantUrl}
+          plantSku={plant.sku}
+          plantVariety={plant.variety}
+          price={plant.price}
+          currency={plant.currency}
         />
 
-        {/* RIGHT — Info */}
         <div className="flex flex-col md:pt-2">
           {plant.group && <p className="eyebrow">{plant.group}</p>}
 
@@ -151,9 +153,8 @@ export default async function PlantPage({
             </dl>
           )}
 
-          {/* Note: Messenger CTA on desktop is inside PlantGallery (tracks selected image) */}
           <p className="mt-8 hidden text-xs text-moss md:block dark:text-cream/40">
-            กดที่รูปใน gallery เพื่อเลือก — ระบบจะส่งรูปที่เลือกไปพร้อม Messenger อัตโนมัติ
+            Tap a photo in the gallery to pick your plant — the selected photo is sent with your inquiry.
           </p>
         </div>
       </div>
